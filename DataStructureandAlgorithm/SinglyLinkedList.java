@@ -1,20 +1,22 @@
 package DataStructureandAlgorithm;
 
-import java.util.LinkedList;
 
+//Create SinglyLinkedList class
 public class SinglyLinkedList{
     Node head;
     Node tail;
     int length;
+ // Create Node class
     public class Node {
         int data;
         Node next;
-
+//Node constructor
         Node(int data) {
             this.data=data;
 
         }
     }
+ //SinglyLinkedList Constructor
     SinglyLinkedList(int data){
         Node newNode = new Node(data);
         head=newNode;
@@ -22,6 +24,7 @@ public class SinglyLinkedList{
         length=1;
 
     }
+ // append method to append new Nodes to linkedlist
     public void append(int value){
         Node NewNode= new Node(value);
         if(head==null){
@@ -35,6 +38,7 @@ public class SinglyLinkedList{
             length++;
         }
     }
+ //add Node to beginning
     public void prepend(int value){
         Node newNode= new Node(value);
         if(head==null){
@@ -48,6 +52,7 @@ public class SinglyLinkedList{
             length++;
         }
     }
+// Insert node at given position
     public void insertNode(int value, int pos){
         Node newNode= new Node(value);
         Node curr=head;
@@ -61,7 +66,7 @@ public class SinglyLinkedList{
 
 
     }
-
+// Reverse the Singlylinkedlist
 public void reverseLinkedList() {
     Node previous = null;
     Node curr = head;
@@ -76,7 +81,7 @@ public void reverseLinkedList() {
 
     head = previous;  // Update head to the new first node
 }
-
+//find middle of sll
 public Node middleList(){
         Node ptr=head;
         Node fastptr=head;
@@ -86,7 +91,7 @@ public Node middleList(){
         }
         return ptr;
 }
-
+//Kth node from end
 public Node kthNode(int k){
         Node slowptr=head;
         Node fastptr=head;
@@ -101,7 +106,7 @@ public Node kthNode(int k){
         }
         return slowptr;
 }
-
+// remove duplicate data from sll
 public void remDuplicate(){
 
         Node current=head;
@@ -115,6 +120,7 @@ public void remDuplicate(){
 
         }
 }
+//Insert Node to a sorted list
 public void insertNodeSortedList(int value){
         Node newNode= new Node(value);
         Node current=head;
@@ -127,17 +133,8 @@ public void insertNodeSortedList(int value){
         temp.next=newNode;
         newNode.next=current;
 }
-//public void remKey(int value){
-//        Node prev=null;
-//        Node current=head;
-//        while(current!= null && current.data!=value ){
-//            prev=current;
-//            current=current.next;
-//        }
-//
-//
-//}
 
+//remove a given key
     public void remKey(int value){
         Node current=head;
         Node tmp=null;
@@ -154,11 +151,45 @@ public void insertNodeSortedList(int value){
         }
         tmp.next=current.next;
     }
+//check if the sll has a loop using two pointer
+    public boolean hasLoop(){
+        Node slowPtr=head;
+        Node fastPtr=head;
+        while(fastPtr!=null && fastPtr.next!=null){
+            slowPtr=slowPtr.next;
+            fastPtr=fastPtr.next.next;
+            if(slowPtr==fastPtr){
+                return true;
+        }
 
+        }
+
+         return false;
+    }
+//create a linkedlist that has loop
+    public void createALoopinLinkedList(){
+        Node first= new Node(1);
+        Node second = new Node(2);
+        Node third= new Node(3);
+        Node fourth= new Node(4);
+        Node fifth= new Node(5);
+        Node sixth= new Node(6);
+
+        head=first;
+        first.next=second;
+        second.next=third;
+        third.next=fourth;
+        fourth.next=fifth;
+        fifth.next=sixth;
+        sixth.next=third;
+
+
+    }
+//main method
     public static void main(String[] args) {
         SinglyLinkedList myLinkedList= new SinglyLinkedList(1);
-        //myLinkedList.append(11);
-        //myLinkedList.append(0);
+        myLinkedList.append(11);
+        myLinkedList.append(0);
         myLinkedList.append(2);
         myLinkedList.append(5);
         myLinkedList.append(12);
@@ -166,14 +197,16 @@ public void insertNodeSortedList(int value){
         myLinkedList.append(21);
         myLinkedList.append(30);
         myLinkedList.remDuplicate();
-        //myLinkedList.insertNodeSortedList(10);
+        myLinkedList.createALoopinLinkedList();
+        myLinkedList.hasLoop();
+        myLinkedList.insertNodeSortedList(10);
         myLinkedList.remKey(2);
 
-        //myLinkedList.prepend(1);
-        //System.out.println(myLinkedList.head.data);
+        myLinkedList.prepend(1);
+        System.out.println(myLinkedList.head.data);
 
-        //myLinkedList.insertNode(20,2);
-        //myLinkedList.reverseLinkedList();
+        myLinkedList.insertNode(20,2);
+        myLinkedList.reverseLinkedList();
         Node current= myLinkedList.head;
         int len=0;
         while(current!=null){
@@ -181,9 +214,10 @@ public void insertNodeSortedList(int value){
             current=current.next;
             len++;
         }
-//        System.out.println("Length is: "+myLinkedList.length);
-//        System.out.println("Mid of the LinkedList is "+ myLinkedList.middleList().data);
-//        System.out.println("Kth item is "+myLinkedList.kthNode(4).data);
+        System.out.println("Length is: "+myLinkedList.length);
+        System.out.println("Mid of the LinkedList is "+ myLinkedList.middleList().data);
+        System.out.println("Kth item is "+myLinkedList.kthNode(4).data);
+        System.out.println(myLinkedList.hasLoop());
 
     }
 
