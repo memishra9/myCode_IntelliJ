@@ -185,39 +185,131 @@ public void insertNodeSortedList(int value){
 
 
     }
+//Display List
+
+    public void display(){
+        Node current= head;
+        while(current!=null){
+            System.out.print(current.data+"-->");
+            current=current.next;
+        }
+        System.out.println("null");
+    }
+ //merge two sorted Linked Lists
+    public  Node mergeSortedLL(Node a ,Node b ){
+        Node dummy= new Node(0);
+        Node tail=dummy;
+        while(a!=null && b!=null){
+            if(a.data<b.data){
+                tail.next=a;
+                a=a.next;
+
+            }
+            else {
+                tail.next=b;
+                b=b.next;
+
+            }
+            tail=tail.next;
+
+        }
+        if(a==null){
+            tail.next=b;
+        }
+        else{
+            tail.next=a;
+        }
+
+        return dummy.next;
+    }
+
+// add numbers
+    public Node AddNumbers(Node a, Node b) {
+
+        Node dummy= new Node(0);
+        Node tail=dummy;
+        int c=0;
+        while(a!=null || b!=null){
+            int x= (a!=null)? a.data:0;
+            int y= (b!=null)? b.data:0;
+            int sum=x+y+c;
+            int r= sum%10;
+            int q=sum/10;
+            tail.next= new Node(r);
+            tail=tail.next;
+            if(a!=null) a=a.next;
+            if(b!=null) b=b.next;
+            c=q;
+            if(c!=0){
+                tail.next=new Node(c);
+            }
+        }
+        return dummy.next;
+
+    }
 //main method
     public static void main(String[] args) {
-        SinglyLinkedList myLinkedList= new SinglyLinkedList(1);
-        myLinkedList.append(11);
-        myLinkedList.append(0);
-        myLinkedList.append(2);
-        myLinkedList.append(5);
-        myLinkedList.append(12);
-        myLinkedList.append(17);
-        myLinkedList.append(21);
-        myLinkedList.append(30);
-        myLinkedList.remDuplicate();
-        myLinkedList.createALoopinLinkedList();
-        myLinkedList.hasLoop();
-        myLinkedList.insertNodeSortedList(10);
-        myLinkedList.remKey(2);
+        SinglyLinkedList sll1=new SinglyLinkedList(7);
+        sll1.append(4);
+        sll1.append(9);
+        SinglyLinkedList sll2= new SinglyLinkedList(5);
+        sll2.append(6);
+        //sll2.append(1);
+        SinglyLinkedList result= new SinglyLinkedList(0);
+        result.head= result.AddNumbers(sll1.head,sll2.head);
+        sll1.display();
+        sll2.display();
+        result.display();
 
-        myLinkedList.prepend(1);
-        System.out.println(myLinkedList.head.data);
+//        SinglyLinkedList sllA= new SinglyLinkedList(1);
+//        SinglyLinkedList sllB= new SinglyLinkedList(5);
+//        sllA.append(2);
+//        sllA.append(4);
+//        sllA.append(7);
+//        sllA.append(10);
+//
+//        sllB.append(6);
+//        sllB.append(8);
+//        sllB.append(9);
+//        //sllA.display();
+//        //sllB.display();
+//        SinglyLinkedList result= new SinglyLinkedList(0);
+//        result.head=result.mergeSortedLL(sllA.head,sllB.head);
+//        result.display();
 
-        myLinkedList.insertNode(20,2);
-        myLinkedList.reverseLinkedList();
-        Node current= myLinkedList.head;
-        int len=0;
-        while(current!=null){
-            System.out.println(current.data);
-            current=current.next;
-            len++;
-        }
-        System.out.println("Length is: "+myLinkedList.length);
-        System.out.println("Mid of the LinkedList is "+ myLinkedList.middleList().data);
-        System.out.println("Kth item is "+myLinkedList.kthNode(4).data);
-        System.out.println(myLinkedList.hasLoop());
+
+
+//        SinglyLinkedList myLinkedList= new SinglyLinkedList(1);
+//        myLinkedList.append(11);
+//        myLinkedList.append(0);
+//        myLinkedList.append(2);
+//        myLinkedList.append(5);
+//        myLinkedList.append(12);
+//        myLinkedList.append(17);
+//        myLinkedList.append(21);
+//        myLinkedList.append(30);
+//        myLinkedList.remDuplicate();
+//        myLinkedList.createALoopinLinkedList();
+//        myLinkedList.hasLoop();
+//        myLinkedList.insertNodeSortedList(10);
+//        myLinkedList.remKey(2);
+//
+//        myLinkedList.prepend(1);
+//        System.out.println(myLinkedList.head.data);
+//
+//        myLinkedList.insertNode(20,2);
+//        myLinkedList.reverseLinkedList();
+//        Node current= myLinkedList.head;
+//        int len=0;
+//        while(current!=null){
+//            System.out.println(current.data);
+//            current=current.next;
+//            len++;
+//        }
+//        System.out.println("Length is: "+myLinkedList.length);
+//        System.out.println("Mid of the LinkedList is "+ myLinkedList.middleList().data);
+//        System.out.println("Kth item is "+myLinkedList.kthNode(4).data);
+//        System.out.println(myLinkedList.hasLoop());
 
     }
 
