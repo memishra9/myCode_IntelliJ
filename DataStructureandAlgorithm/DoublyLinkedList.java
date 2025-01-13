@@ -14,17 +14,17 @@ public class DoublyLinkedList{
         }
 
     }
-    DoublyLinkedList(int data){
-        Node newNode= new Node(data);
-        head=newNode;
-        tail=newNode;
-        length=1;
+    DoublyLinkedList(){
+        this.head=head;
+        this.tail=tail;
+        this.length=0;
+
     }
 
 
     public static void main(String[] args) {
         SinglyLinkedList sll= new SinglyLinkedList(1);
-        System.out.println(sll.head.data);
+        System.out.println(sll.head);
     }
 
 }
