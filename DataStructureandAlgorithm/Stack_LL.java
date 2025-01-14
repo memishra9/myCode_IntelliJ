@@ -2,7 +2,7 @@ package DataStructureandAlgorithm;
 
 import java.util.EmptyStackException;
 
-public class Stack{
+public class Stack_LL {
     private Node top;
     private int length;
     private class Node {
@@ -13,7 +13,7 @@ public class Stack{
             this.data=data;
         }
     }
-    public Stack(){
+    public Stack_LL(){
         top=null;
         length=0;
 
@@ -51,7 +51,7 @@ public class Stack{
     }
 
     public static void main(String[] args) {
-        Stack s= new Stack();
+        Stack_LL s= new Stack_LL();
         System.out.println("Length is :" +s.length());
         s.push(10);
         s.push(15);
