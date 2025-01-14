@@ -3,7 +3,7 @@ package DataStructureandAlgorithm;
 import java.util.Stack;
 
 public class ReverseString{
-    public char[] reverseString(String s){
+    public String reverseString(String s){
         Stack<Character> stack= new Stack<>();
         char[] charArray= s.toCharArray();
         for(char c : charArray){
@@ -12,16 +12,15 @@ public class ReverseString{
         for(int i=0; i< charArray.length; i++){
             charArray[i]=stack.pop();
         }
-        return charArray;
+        return new String(charArray);
 
     }
 
     public static void main(String[] args) {
-        ReverseString result= new ReverseString();
+        ReverseString obj= new ReverseString();
         //char[] rev=result.reverseString("Deepak");
-        for(char c : result.reverseString("Deepak")){
-            System.out.print(c);
+
+            System.out.print(obj.reverseString("deepak"));
         }
     }
 
-}
